@@ -13,7 +13,7 @@ const cartSlice = createSlice({
             state.totalQuantity++
             if(!existingItem){
                 state.items.push({//non è un problema manipolare direttamente l'array solo grazie a redux toolkit
-                    itemId: newItem.id,
+                    id: newItem.id,
                     price: newItem.price,
                     quantity: 1,
                     totalPrice: newItem.price,
