@@ -4,7 +4,8 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState: {
         items: [],
-        totalQuantity: 0
+        totalQuantity: 0,
+        changed: false
     },
     reducers: {
         replaceCart(state, action){
@@ -15,6 +16,7 @@ const cartSlice = createSlice({
             const newItem = action.payload
             const existingItem = state.items.find(item => item.id === newItem.id)
             state.totalQuantity++
+            state.changed = true
             if (!existingItem) {
                 state.items.push({//non è un problema manipolare direttamente l'array solo grazie a redux toolkit
                     id: newItem.id,
@@ -32,6 +34,7 @@ const cartSlice = createSlice({
             const id = action.payload
             const existingItem = state.items.find(item => item.id === id)
             state.totalQuantity--
+            state.changed = true
             if (existingItem.quantity > 1) {
                 existingItem.quantity--
                 existingItem.totalPrice -= existingItem.price
